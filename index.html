@@ -1,15 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My PDF Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Viewer</title>
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; }
-        iframe { width: 100%; height: 100%; border: none; }
+        body, html { margin: 0; padding: 0; height: 100%; width: 100%; display: flex; flex-direction: column; overflow: hidden; }
+        
+        /* Desktop View: Full screen PDF */
+        .pdf-viewer { flex-grow: 1; width: 100%; border: none; }
+
+        /* Mobile View: Show a friendly button */
+        .mobile-header { 
+            display: none; 
+            padding: 15px; 
+            background: #333; 
+            color: white; 
+            text-align: center; 
+        }
+        .btn { 
+            background: #007bff; color: white; padding: 10px 20px; 
+            text-decoration: none; border-radius: 5px; font-weight: bold; 
+        }
+
+        @media (max-width: 768px) {
+            .mobile-header { display: block; }
+            /* On very small screens, we allow the page to scroll to the button */
+            body { overflow: auto; } 
+        }
     </style>
 </head>
 <body>
-    <iframe src="CATALOG_AM.pdf"></iframe>
+
+    <div class="mobile-header">
+        <p>Using a mobile device?</p>
+        <a href="catalog_am.pdf" class="btn">Open Full PDF</a>
+    </div>
+
+    <iframe class="pdf-viewer" src="catalog_am.pdf"></iframe>
+
 </body>
 </html>
-
-
